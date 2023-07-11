@@ -1,15 +1,13 @@
 #Blueprint or Model (in MVC Design Patterns)
 class Customer():
-  def __init__(self,id ,name ,age , address, email , balance):
+  def __init__(self,id ,name ,age , address, email , balance, stocks):
     self.id = id
     self.name = name
     self.age = age
     self.address = address
     self.email = email
     self.balance = balance
-
-
-
+    self.stocks = stocks
 # Deposit Controller
 class deposit():
   def __init__(self,customer):
@@ -29,14 +27,31 @@ class withdraw():
   def removeCash(self, inputCash):
     self.customer.balance -=inputCash
   
+#Trade Controller
+class trade():
+  def __init__(self,customer): #Costuctor Method
+    self.customer = customer
+  
+  def buy(self, stockName, volume):
+    self.customer.stocks[stockName]+=volume
+  
+  def sell(self, stockName, volume):
+    self.customer.stocks[stockName]-=volume
+                  #stocks["AOT"]
 
-methanon = Customer(1001, "methanon", 24, "xxx", "xxx@xxx.com", 4000)
+
+stocks = {"AOT":4000, 
+          "CPF":1000,
+          "PTT":2000}
+methanon = Customer(1001, "methanon", 24, "xxx", "xxx@xxx.com", 4000, stocks)
 print("id:", methanon.id)
 print("name:", methanon.name)
 print("age:", methanon.age)
 print("address:", methanon.address)
 print("email:", methanon.email)
 print("balance:", methanon.balance)
+print("stocks:", methanon.stocks)
+
 ################################################################################
 methanonDeposit = deposit(methanon)
 methanonDeposit.addCash(1000)
@@ -49,7 +64,8 @@ methanonWithDraw.removeCash(100)
 print("After remove Cash, ", methanonWithDraw.customer.balance)
 
 ################################################################################
-print(methanon)
-print(methanonDeposit.customer)
-print(methanonWithDraw.customer)
-print(methanon.balance)
+methanonTrade = trade(methanon)
+print("Old Hoding CPF, ", methanonTrade.customer.stocks["CPF"])
+methanonTrade.buy("CPF", 21)
+print("New Hoding CPF, ", methanonTrade.customer.stocks["CPF"])
+
