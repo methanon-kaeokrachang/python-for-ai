@@ -69,3 +69,30 @@ print("Old Hoding CPF, ", methanonTrade.customer.stocks["CPF"])
 methanonTrade.buy("CPF", 21)
 print("New Hoding CPF, ", methanonTrade.customer.stocks["CPF"])
 
+
+#Main Program
+isRunning=True
+while isRunning:
+  x = int(input("stop press 0"))
+  if x==0:
+    isRunning=False
+  
+  id = int(input("Enter your id: "))
+  name = str(input("Enter your name: "))
+  age = int(input("Enter your age: "))
+  address = str(input("Enter your address: "))
+  email = str(input("Enter your email: "))
+  balance = int(input("Enter your balance: "))
+  stocks = {"AOT":4000, 
+          "CPF":1000,
+          "PTT":2000}
+  customer = Customer(id, name, age, address, email, balance, stocks)
+  print(customer.id)
+  print(customer.name)
+  print(customer.age)
+  print(customer.address)
+  print(customer.email)
+  print(customer.balance)
+  print(customer.stocks)
+
+
